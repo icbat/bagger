@@ -13,6 +13,7 @@
     "simulator",
     "boring"
   ],
+  "license": "MIT",
   "private": true,
   "ignore": [
     "**/.*",
