@@ -1,0 +1,27 @@
+{
+  "name": "bagger",
+  "homepage": "https://github.com/icbat/bagger",
+  "authors": [
+    "Evan Cobb <cobb.evan@gmail.com>"
+  ],
+  "description": "An MMO questing simulator",
+  "main": "www/index.html",
+  "moduleType": [],
+  "keywords": [
+    "game",
+    "mmo",
+    "simulator",
+    "boring"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "phaser": "^2.4.7"
+  }
+}
