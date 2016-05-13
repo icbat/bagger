@@ -1,5 +1,5 @@
 # Don't commit built things
-platforms/*/build/
+platforms/
 
 # Don't commit third-party dependencies
 bower_components/
