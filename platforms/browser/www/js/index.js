@@ -1,51 +1,93 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    }
+var game = new Phaser.Game(800, 600, Phaser.AUTO);
+var game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, 'game');
+constants = {
+  tileSize: 64,
+  maxJumpHeight: 200
+};
+objects = {};
+colorPalette = {
+  accent: '#22CC77',
+  light: '#ddd',
+  middle: '#888',
+  dark: '#333'
 };
 
-app.initialize();
+state_init = function(game) {
+  return {
+    preload: function() {
+      game.stage.backgroundColor = colorPalette.light;
+
+      constants.groundHeight = game.world.height - constants.tileSize;
+      constants.centerX = game.world.centerX - constants.tileSize / 2;
+
+      objects.runner = new Phaser.Rectangle(constants.centerX, constants.groundHeight - constants.tileSize, constants.tileSize, constants.tileSize);
+      objects.ground = new Phaser.Rectangle(0, constants.groundHeight, game.world.width, constants.tileSize);
+      objects.obstacle = new Phaser.Rectangle(game.world.width + 20, constants.groundHeight - constants.tileSize, constants.tileSize, constants.tileSize);
+    },
+
+    create: function() {
+      game.state.start('running');
+    }
+  };
+};
+
+state_running = function(game) {
+  return {
+    create: function () {
+      game.input.onDown.add(this.onDown, this);
+      game.input.onUp.add(this.onUp, this);
+    },
+
+    update: function () {
+      objects.obstacle.x -= 2;
+      if (objects.obstacle.x < -20) {
+        objects.obstacle.x = game.world.width + 20;
+      }
+      if(objects.obstacle.intersects(objects.runner)) {
+        game.state.start('waiting');
+      }
+    },
+
+    render: function () {
+      game.debug.geom(objects.runner, colorPalette.accent);
+      game.debug.geom(objects.ground, colorPalette.dark);
+      game.debug.geom(objects.obstacle, colorPalette.middle);
+    },
+
+    onDown: function (pointer, mouseEvent) {
+      if(mouseEvent.identifier === 0) {
+        objects.runner.y -= constants.maxJumpHeight;
+      }
+    },
+
+    onUp: function (pointer, mouseEvent) {
+      // Prevents 'mouse leaving the game world' from firing this, too
+      if(mouseEvent.identifier === 0 && pointer.identifier === 0) {
+        objects.runner.y += constants.maxJumpHeight;
+      }
+    }
+  };
+};
+
+state_waiting = function(game) {
+  return {
+    create: function () {
+      objects.obstacle.setTo(game.world.width + 20, constants.groundHeight - constants.tileSize, constants.tileSize, constants.tileSize);
+      game.input.onTap.add(this.startRunning, this);
+    },
+
+    render: function () {
+      game.debug.geom(objects.runner, colorPalette.accent);
+      game.debug.geom(objects.ground, colorPalette.dark);
+    },
+
+    startRunning: function() {
+      game.state.start('running');
+    }
+  };
+};
+
+game.state.add('init', state_init);
+game.state.add('running', state_running);
+game.state.add('waiting', state_waiting);
+game.state.start('init');
