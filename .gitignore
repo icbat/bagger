@@ -1,3 +1,7 @@
 # Don't commit built things
 platforms/*/build/
-bower_components
+
+# Don't commit third-party dependencies
+bower_components/
+node_modules/
+www/scripts/vendor/

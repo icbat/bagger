@@ -1,0 +1,31 @@
+{
+  "name": "bagger",
+  "version": "1.0.0",
+  "description": "An MMO quest simulator",
+  "main": "www/js/index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "gulp": "^3.9.1",
+    "gulp-util": "^3.0.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icbat/bagger.git"
+  },
+  "keywords": [
+    "game",
+    "mmo",
+    "simulator",
+    "boring"
+  ],
+  "author": "Evan Cobb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/icbat/bagger/issues"
+  },
+  "homepage": "https://github.com/icbat/bagger#readme"
+}
