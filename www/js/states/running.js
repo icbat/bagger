@@ -12,13 +12,13 @@ var state_running = function(game) {
             }
 
             var playerHeight = 64;
-            var crab = game.add.sprite(game.world.width - (64 * 4), upperScreenBottom - playerHeight, 'monster-crab');
+            var crab = game.add.sprite(game.world.width / 5 * 4, upperScreenBottom - playerHeight, 'monster-crab');
             crab.scale.setTo(4, 4);
             crab.anchor.setTo(0.5, 1);
             crab.animations.add('walk');
             crab.animations.play('walk', 2, true);
 
-            var player = game.add.sprite((64 * 4), upperScreenBottom - playerHeight, 'player');
+            var player = game.add.sprite(game.world.width / 5, upperScreenBottom - playerHeight, 'player');
             player.scale.setTo(4, 4);
             player.anchor.setTo(0.5, 1);
 
