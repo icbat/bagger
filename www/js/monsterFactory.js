@@ -1,6 +1,6 @@
 var monsterFactory = {
     createMonster: function(x, y) {
-        var monster = game.add.sprite(x, y, 'monster-crab');
+        var monster = game.add.sprite(x, -16, 'monster-crab');
         monster.scale.setTo(4, 4);
         monster.anchor.setTo(0.5, 1);
         monster.animations.add('walk');
@@ -20,6 +20,13 @@ var monsterFactory = {
                 this.destroy();
             }, this);
         };
+
+        var dropIn = game.add.tween(monster).to({
+            y: y,
+        }, 500, Phaser.Easing.Exponential.In, true);
+        dropIn.onComplete.add(function() {
+            game.camera.shake(0.01, 100, true, Phaser.Camera.SHAKE_VERTICAL);
+        });
 
         monster.events.onDestroy.add(function() {
             this.createMonster(x, y);

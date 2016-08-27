@@ -3,12 +3,12 @@ var state_running = function(game) {
         create: function(game) {
             var upperScreenBottom = game.world.height / 4;
 
-            var sky = game.add.sprite(0, 0, 'pixel');
+            var sky = game.add.sprite(0, -100, 'pixel');
             sky.scale.setTo(game.world.width, upperScreenBottom);
             sky.tint = Phaser.Color.hexToRGB(colors.blue);
 
             var bottom = game.add.sprite(0, upperScreenBottom * 3, 'pixel');
-            bottom.scale.setTo(game.world.width, upperScreenBottom);
+            bottom.scale.setTo(game.world.width, upperScreenBottom + 100);
             bottom.tint = Phaser.Color.hexToRGB(colors.sand);
 
             // SUPER inefficient, probably.
