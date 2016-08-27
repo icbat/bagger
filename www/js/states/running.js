@@ -22,6 +22,9 @@ var state_running = function(game) {
             player.scale.setTo(4, 4);
             player.anchor.setTo(0.5, 1);
 
+            var bottom = game.add.sprite(0, upperScreenBottom * 3, 'pixel');
+            bottom.scale.setTo(game.world.width, upperScreenBottom);
+            bottom.tint = Phaser.Color.hexToRGB(colors.sand);
         }
     };
 };
