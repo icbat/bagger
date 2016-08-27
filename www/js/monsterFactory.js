@@ -1,6 +1,6 @@
 var monsterFactory = {
-    createMonster: function(x, y) {
-        var monster = game.add.sprite(x, -16, 'monster-crab');
+    createMonster: function(x, y) {        
+        var monster = game.add.sprite(x, -16, 'monster-' + random.integerInRange(0, constants.totalMonsters - 1));
         monster.scale.setTo(4, 4);
         monster.anchor.setTo(0.5, 1);
         monster.animations.add('walk');
