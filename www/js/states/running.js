@@ -20,11 +20,11 @@ var state_running = function(game) {
 
             var playerHeight = upperScreenBottom - 64;
 
-            var player = game.add.sprite(game.world.width / 5, playerHeight, 'player');
+            var player = game.add.sprite(game.world.width * constants.playerXCoefficient, playerHeight, 'player');
             player.scale.setTo(4, 4);
             player.anchor.setTo(0.5, 1);
 
-            var monster = monsterFactory.createMonster(game.world.width / 5 * 4, playerHeight);            
+            var monster = monsterFactory.createMonster(game.world.width * constants.monsterXCoefficient, playerHeight);
         }
     };
 };
