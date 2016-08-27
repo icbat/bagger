@@ -7,24 +7,22 @@ var state_running = function(game) {
             sky.tint = Phaser.Color.hexToRGB(colors.blue);
 
             // SUPER inefficient, probably. TODO : Profile this vs one giant texture
+            // TODO also try sprite batch
             for (i = 0; i * 70 < game.world.width; ++i) {
                 game.add.sprite(i * 70, upperScreenBottom - 105, 'ground-middle');
             }
 
-            var playerHeight = 64;
-            var crab = game.add.sprite(game.world.width / 5 * 4, upperScreenBottom - playerHeight, 'monster-crab');
-            crab.scale.setTo(4, 4);
-            crab.anchor.setTo(0.5, 1);
-            crab.animations.add('walk');
-            crab.animations.play('walk', 2, true);
+            var playerHeight = upperScreenBottom - 64;
 
-            var player = game.add.sprite(game.world.width / 5, upperScreenBottom - playerHeight, 'player');
+            var player = game.add.sprite(game.world.width / 5, playerHeight, 'player');
             player.scale.setTo(4, 4);
             player.anchor.setTo(0.5, 1);
 
             var bottom = game.add.sprite(0, upperScreenBottom * 3, 'pixel');
             bottom.scale.setTo(game.world.width, upperScreenBottom);
             bottom.tint = Phaser.Color.hexToRGB(colors.sand);
+
+            monsterFactory.createMonster(game.world.width / 5 * 4, playerHeight);
         }
     };
 };
