@@ -8,6 +8,7 @@ var state_init = function(game) {
             game.load.spritesheet('monster-crab', 'assets/graphics/monster_07.png', 16, 16);
             game.load.image('player', 'assets/graphics/player_82.png');
             game.load.image('pixel', 'assets/graphics/pixel.png');
+            game.load.image('ground-middle', 'assets/graphics/ground-middle.png');
 
             game.stage.backgroundColor = colors.brown;
         },
