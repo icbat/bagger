@@ -1,10 +1,18 @@
 var state_running = function(game) {
     return {
         create: function(game) {
-            var crab = game.add.sprite(game.world.width - (64 * 3) , game.world.height / 4 - 32, 'monster-crab');
+            var upperScreenBottom = game.world.height / 4;
+            var sky = game.add.sprite(0, 0, 'pixel');
+            sky.scale.setTo(game.world.width, upperScreenBottom);
+            sky.tint = Phaser.Color.hexToRGB(colors.blue);
+
+            var crab = game.add.sprite(game.world.width - (64 * 4), upperScreenBottom - 32, 'monster-crab');
             crab.scale.setTo(4, 4);
-            var player = game.add.sprite((64 * 2), game.world.height / 4 - 32, 'player');
+            crab.anchor.setTo(0.5, 1);
+            var player = game.add.sprite((64 * 4), upperScreenBottom - 32, 'player');
             player.scale.setTo(4, 4);
+            player.anchor.setTo(0.5, 1);
+
         },
 
         update: function(game) {

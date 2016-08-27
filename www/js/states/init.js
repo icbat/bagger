@@ -7,13 +7,7 @@ var state_init = function(game) {
             }, this);
             game.load.image('monster-crab', 'assets/graphics/monster_13.png');
             game.load.image('player', 'assets/graphics/player_82.png');
-            // game.load.audio('land', 'assets/sounds/land.ogg');
-            // game.load.audio('jump', 'assets/sounds/jump.ogg');
-            // game.load.audio('lose', 'assets/sounds/lose.ogg');
-            // game.load.audio('score', 'assets/sounds/score.ogg');
-            // game.load.audio('milestone', 'assets/sounds/upmid.ogg');
-            // game.load.bitmapFont('titleOrange', 'assets/fonts/upheavalPro-orange.png', 'assets/fonts/upheavalPro.xml');
-            // game.load.bitmapFont('titlePurple', 'assets/fonts/upheavalPro-purple.png', 'assets/fonts/upheavalPro.xml');
+            game.load.image('pixel', 'assets/graphics/pixel.png');
 
             game.stage.backgroundColor = colors.brown;
         },
