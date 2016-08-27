@@ -5,3 +5,7 @@ platforms/
 bower_components/
 node_modules/
 www/js/vendor/
+
+# Don't commit staged assets
+assets/
+www/assets/
