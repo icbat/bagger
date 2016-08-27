@@ -5,7 +5,7 @@ var state_init = function(game) {
             game.load.onLoadComplete.add(function() {
                 this.assetsLoaded = true;
             }, this);
-            game.load.image('monster-crab', 'assets/graphics/monster_13.png');
+            game.load.spritesheet('monster-crab', 'assets/graphics/monster_07.png', 16, 16);
             game.load.image('player', 'assets/graphics/player_82.png');
             game.load.image('pixel', 'assets/graphics/pixel.png');
 
