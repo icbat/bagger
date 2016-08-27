@@ -4,4 +4,4 @@ platforms/
 # Don't commit third-party dependencies
 bower_components/
 node_modules/
-www/scripts/vendor/
+www/js/vendor/
