@@ -20,11 +20,11 @@ var state_running = function(game) {
 
             var playerHeight = fourthOfScreen - 64;
 
-            var player = game.add.sprite(game.world.width * constants.playerXCoefficient, playerHeight, 'player');
+            var player = game.add.sprite(game.world.width * layout.playerXCoefficient, playerHeight, 'player');
             player.scale.setTo(4, 4);
             player.anchor.setTo(0.5, 1);
 
-            var monster = monsterFactory.createMonster(game.world.width * constants.monsterXCoefficient, playerHeight);
+            var monster = monsterFactory.createMonster(game.world.width * layout.monsterXCoefficient, playerHeight);
 
             for (i = 0; i < 9; ++i) {
                 var slotSize = 64;
