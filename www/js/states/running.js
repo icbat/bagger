@@ -30,7 +30,7 @@ var state_running = function(game) {
                 var slotSize = layout.findSlotSize(game.world.width, fourthOfScreen * 2, layout.bagSlotPadding);
                 var xPadding = layout.findPadding(game.world.width, slotSize, layout.bagSlotPadding);
                 var yPadding = layout.findPadding(fourthOfScreen * 2, slotSize, layout.bagSlotPadding);
-                var x = xPadding + (slotSize + layout.bagSlotPadding) * (i % 3);
+                var x = xPadding + (i % 3) * (slotSize + layout.bagSlotPadding);
                 var y = yPadding + (Math.floor(i / 3) * (slotSize + layout.bagSlotPadding));
                 var slot = game.add.sprite(x, fourthOfScreen + y, 'pixel');
                 slot.scale.setTo(slotSize, slotSize);
