@@ -4,6 +4,7 @@ var constants = {
 };
 
 var layout = {
-    playerXCoefficient: 1/5,
-    monsterXCoefficient: 4/5,    
+    playerXCoefficient: 1 / 5,
+    monsterXCoefficient: 4 / 5,
+    bagSlotPadding: 15
 };

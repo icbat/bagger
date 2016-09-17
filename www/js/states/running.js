@@ -27,10 +27,11 @@ var state_running = function(game) {
             var monster = monsterFactory.createMonster(game.world.width * layout.monsterXCoefficient, playerHeight);
 
             for (i = 0; i < 9; ++i) {
-                var slotSize = 64;
-                var x = (15 + slotSize) * (i % 3) + 30;
-                var y = fourthOfScreen + (Math.floor(i / 3) * (slotSize + 15));
-                var slot = game.add.sprite(x, y, 'pixel');
+                var smallestSide = Math.min(fourthOfScreen * 2, game.world.width);
+                var slotSize = (smallestSide - (5 * layout.bagSlotPadding)) / 3;
+                var x = (slotSize + layout.bagSlotPadding) * (i % 3);
+                var y = (Math.floor(i / 3) * (slotSize + layout.bagSlotPadding));
+                var slot = game.add.sprite(x, fourthOfScreen + y, 'pixel');
                 slot.scale.setTo(slotSize, slotSize);
                 slot.tint = Phaser.Color.hexToRGB(colors.bagSlots);
             }
