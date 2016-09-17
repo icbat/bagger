@@ -27,8 +27,7 @@ var state_running = function(game) {
             var monster = monsterFactory.createMonster(game.world.width * layout.monsterXCoefficient, playerHeight);
 
             for (i = 0; i < 9; ++i) {
-                var smallestSide = Math.min(fourthOfScreen * 2, game.world.width);
-                var slotSize = (smallestSide - (5 * layout.bagSlotPadding)) / 3;
+                var slotSize = layout.findSlotSize(game.world.width, fourthOfScreen * 2, layout.bagSlotPadding);
                 var xPadding = layout.findPadding(game.world.width, slotSize, layout.bagSlotPadding);
                 var yPadding = layout.findPadding(fourthOfScreen * 2, slotSize, layout.bagSlotPadding);
                 var x = xPadding + (slotSize + layout.bagSlotPadding) * (i % 3);
