@@ -1,7 +1,7 @@
 var layout = {
     playerXCoefficient: 1 / 5,
     monsterXCoefficient: 4 / 5,
-    bagSlotPadding: 15,
+    minPadding: 15,
     findPadding: function(widthOrHeight, slotSize, paddingBetweenSlots) {
         return (widthOrHeight - (slotSize * 3) - (paddingBetweenSlots * 3)) / 2;
     },
@@ -28,24 +28,20 @@ var layout = {
         sky.scale.setTo(game.world.width, layout.fourthOfScreen(game));
         sky.tint = Phaser.Color.hexToRGB(colors.blue);
     },
-    makeBottomBox: function(game) {
-        var bottom = game.add.sprite(0, layout.fourthOfScreen(game) * 3, 'pixel');
-        bottom.scale.setTo(game.world.width, layout.fourthOfScreen(game) + 100);
-        bottom.tint = Phaser.Color.hexToRGB(colors.sand);
-    },
     makeChargeBar: function(game) {
-        var xPadding = this.bagSlotPadding;
-        var yPadding = this.bagSlotPadding;
+        var xPadding = this.minPadding;
+        var yPadding = this.minPadding;
         var width = game.world.width - xPadding * 2;
-        var height = this.bagSlotPadding * 2;
-        var backgroundFrame = game.add.sprite(xPadding, yPadding + (3 * this.fourthOfScreen(game)), 'pixel');
-        backgroundFrame.maxWidth = width;
-        backgroundFrame.minWidth = 5;
-        backgroundFrame.scale.setTo(backgroundFrame.minWidth, height);
-        backgroundFrame.tint = Phaser.Color.hexToRGB(colors.barBackground);
-        game.add.tween(backgroundFrame.scale).to({
+        var height = this.minPadding;
+        var chargeBar = game.add.sprite(xPadding, yPadding + (this.fourthOfScreen(game)), 'pixel');
+        chargeBar.scale.setTo(width, height);
+        chargeBar.tint = Phaser.Color.hexToRGB(colors.sand);
+        var growingTween = game.add.tween(chargeBar.scale).to({
             x: width,
             y: height
-        }, constants.attackChargeTime, Phaser.Easing.Linear.None, true);
+        },
+        constants.attackChargeTime,
+        // 1,
+        Phaser.Easing.Linear.None, true);
     }
 };

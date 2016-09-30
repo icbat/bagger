@@ -3,7 +3,6 @@ var state_running = function(game) {
         create: function(game) {
             layout.makeSky(game);
             layout.makeGround(game);
-            layout.makeBottomBox(game);
             layout.makeChargeBar(game);
 
             var playerHeight = layout.fourthOfScreen(game) - 64;
