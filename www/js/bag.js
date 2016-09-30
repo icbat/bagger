@@ -7,7 +7,6 @@ var makeBag = function(slots) {
 
                 var slot = this.slots[i];
                 if (!slot.contents) {
-                    console.log("found a home at", i);
                     slot.contents = given;
                     given.x = slot.x;
                     given.y = slot.y;
