@@ -33,7 +33,17 @@ var layout = {
         var yPadding = this.minPadding;
         var width = game.world.width - xPadding * 2;
         var height = this.minPadding;
-        var chargeBar = game.add.sprite(xPadding, yPadding + (this.fourthOfScreen(game)), 'pixel');
+
+        var callback = function() {
+            console.log("clicked");
+        };
+        var y = yPadding + (this.fourthOfScreen(game));
+        var chargeBar = game.add.sprite(xPadding, y, 'pixel');
+        var button = game.add.button(xPadding, yPadding + height + y, 'pixel', callback);
+        button.height = this.minPadding * 4;
+        button.width = width;
+        button.tint = Phaser.Color.hexToRGB(colors.sand);
+
         chargeBar.scale.setTo(width, height);
         chargeBar.tint = Phaser.Color.hexToRGB(colors.sand);
         var growingTween = game.add.tween(chargeBar.scale).to({
