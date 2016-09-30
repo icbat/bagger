@@ -60,6 +60,6 @@ var layout = {
         button.width = width;
 
         callback();
-
+        return button;
     }
 };

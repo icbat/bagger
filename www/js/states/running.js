@@ -3,7 +3,8 @@ var state_running = function(game) {
         create: function(game) {
             layout.makeSky(game);
             layout.makeGround(game);
-            layout.makeChargeBar(game);
+            var attackButton = layout.makeChargeBar(game);
+
 
             var playerHeight = layout.fourthOfScreen(game) - 64;
             var player = game.add.sprite(game.world.width * layout.playerXCoefficient, playerHeight, 'player');
@@ -11,6 +12,10 @@ var state_running = function(game) {
             player.anchor.setTo(0.5, 1);
 
             var monster = monsterFactory.createMonster(game.world.width * layout.monsterXCoefficient, playerHeight);
+
+            attackButton.onInputUp.add(function() {
+                monster.die();
+            });
         }
     };
 };

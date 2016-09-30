@@ -32,7 +32,6 @@ var monsterFactory = {
         monster.events.onDestroy.add(function() {
             this.createMonster(x, y);
         }, this);
-        game.time.events.add(constants.monsterLifespan, monster.die, monster);
 
         return monster;
     }
