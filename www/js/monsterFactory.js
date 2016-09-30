@@ -5,8 +5,6 @@ var monsterFactory = {
         monster.anchor.setTo(0.5, 1);
         monster.animations.add('walk');
         monster.animations.play('walk', 2, true);
-        monster.deathSignal = new Phaser.Signal();
-        monster.lootKey = 'drop-heart';
 
         monster.die = function() {
             var tween = game.add.tween(this).to({
@@ -32,7 +30,6 @@ var monsterFactory = {
         });
 
         monster.events.onDestroy.add(function() {
-            this.lootCallback();
             this.createMonster(x, y);
         }, this);
         game.time.events.add(constants.monsterLifespan, monster.die, monster);
