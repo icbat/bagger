@@ -11,6 +11,9 @@ var state_running = function(game) {
             player.scale.setTo(4, 4);
             player.anchor.setTo(0.5, 1);
             var monster = monsterFactory.createMonster(game.world.width * layout.monsterXCoefficient, playerHeight);
+            monster.deathSignal.add(function() {
+                game.add.sprite(0, 0, monster.lootKey);
+            });
         }
     };
 };

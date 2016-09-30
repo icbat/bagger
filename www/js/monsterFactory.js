@@ -1,18 +1,22 @@
 var monsterFactory = {
-    createMonster: function(x, y) {        
+    createMonster: function(x, y) {
         var monster = game.add.sprite(x, -16, 'monster-' + random.integerInRange(0, constants.totalMonsters - 1));
         monster.scale.setTo(4, 4);
         monster.anchor.setTo(0.5, 1);
         monster.animations.add('walk');
         monster.animations.play('walk', 2, true);
+        monster.deathSignal = new Phaser.Signal();
+        monster.lootKey = 'drop-heart';
 
         monster.die = function() {
+            monster.deathSignal.dispatch();
             var tween = game.add.tween(this).to({
                 alpha: 0,
                 rotation: 20
             }, constants.monsterDeathAnimationTime, Phaser.Easing.Linear.None, true);
             game.add.tween(this.scale).to({
-                x: 0, y:0
+                x: 0,
+                y: 0
             }, constants.monsterDeathAnimationTime, Phaser.Easing.Linear.None, true);
             tween.onComplete.add(function() {
                 // TODO consider using kill and having this factory draw from an object pool
