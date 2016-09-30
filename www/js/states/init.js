@@ -14,7 +14,7 @@ var state_init = function(game) {
             constants.totalMonsters = i;
             game.load.image('player', 'assets/graphics/player_82.png');
             game.load.image('pixel', 'assets/graphics/pixel.png');
-            game.load.image('drop-heart', 'assets/graphics/drops/heart.png');
+            game.load.image('drop-heart', 'assets/graphics/drops/shieldGold.png');
             game.load.image('ground-middle', 'assets/graphics/ground-middle.png');
 
             game.stage.backgroundColor = colors.brown;
