@@ -1,14 +1,17 @@
 var gulp = require('gulp');
 
 gulp.task('default', ['copy-bower', 'copy-graphics'], function() {});
-
-var bower_components = [
-    'bower_components/phaser/build/phaser.min.js'
-];
+gulp.task('prod', ['copy-bower-prod', 'copy-graphics'], function() {});
 
 gulp.task('copy-bower', function() {
     return gulp
-        .src(bower_components)
+        .src('bower_components/phaser/build/phaser.js')
+        .pipe(gulp.dest('./www/js/vendor/'));
+});
+
+gulp.task('copy-bower-prod', function() {
+    return gulp
+        .src('bower_components/phaser/build/phaser.min.js')
         .pipe(gulp.dest('./www/js/vendor/'));
 });
 
