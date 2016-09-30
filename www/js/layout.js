@@ -36,21 +36,22 @@ var layout = {
 
         var y = yPadding + (this.fourthOfScreen(game));
         var chargeBar = game.add.sprite(xPadding, y, 'pixel');
-        var callback = function() {
-            chargeBar.scale.setTo(5, height);
-            chargeBar.tint = Phaser.Color.hexToRGB(colors.sand);
-            var growingTween = game.add.tween(chargeBar.scale).to({
+        chargeBar.scale.setTo(5, height);
+        chargeBar.tint = Phaser.Color.hexToRGB(colors.sand);
+        var growingTween = game.add.tween(chargeBar.scale).to({
                 x: width,
                 y: height
             },
             constants.attackChargeTime,
             // 1,
             Phaser.Easing.Linear.None, true);
-            growingTween.onComplete.add(function() {
-                button.inputEnabled = true;
-                button.tint = Phaser.Color.hexToRGB(colors.sand);
-            });
-
+        growingTween.onComplete.add(function() {
+            button.inputEnabled = true;
+            button.tint = Phaser.Color.hexToRGB(colors.sand);
+        });
+        var callback = function() {
+            chargeBar.scale.setTo(5, height);
+            growingTween.start();
             button.inputEnabled = false;
             button.tint = Phaser.Color.hexToRGB(colors.disabledButton);
         };
