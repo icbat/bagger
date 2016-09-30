@@ -47,7 +47,7 @@ var layout = {
             Phaser.Easing.Linear.None, true);
         growingTween.onComplete.add(function() {
             button.inputEnabled = true;
-            button.tint = Phaser.Color.hexToRGB(colors.sand);
+            button.tint = Phaser.Color.hexToRGB(colors.green);
         });
         var callback = function() {
             chargeBar.scale.setTo(5, height);
