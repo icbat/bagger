@@ -42,9 +42,10 @@ var layout = {
         var button = game.add.button(xPadding, yPadding + height + y, 'pixel', callback);
         button.height = this.minPadding * 4;
         button.width = width;
-        button.tint = Phaser.Color.hexToRGB(colors.sand);
+        button.inputEnabled = false;
+        button.tint = Phaser.Color.hexToRGB(colors.disabledButton);
 
-        chargeBar.scale.setTo(width, height);
+        chargeBar.scale.setTo(5, height);
         chargeBar.tint = Phaser.Color.hexToRGB(colors.sand);
         var growingTween = game.add.tween(chargeBar.scale).to({
             x: width,
@@ -53,5 +54,9 @@ var layout = {
         constants.attackChargeTime,
         // 1,
         Phaser.Easing.Linear.None, true);
+        growingTween.onComplete.add(function() {
+            button.inputEnabled = true;
+            button.tint = Phaser.Color.hexToRGB(colors.sand);
+        });
     }
 };
