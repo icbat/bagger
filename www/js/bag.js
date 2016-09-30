@@ -1,7 +1,8 @@
 var makeBag = function(slots) {
     return {
         slots: slots,
-        accept: function(given) {
+
+        store: function(given) {
             var i;
             for (i = 0; i < slots.length; ++i) {
                 var slot = this.slots[i];

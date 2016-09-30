@@ -1,5 +1,5 @@
 describe("filling bag", function() {
-    it("should accept items", function() {
+    it("should store items", function() {
         var slots = [{
             x: 0,
             y: 0
@@ -7,7 +7,7 @@ describe("filling bag", function() {
         var bag = makeBag(slots);
         var expected = 'widget';
 
-        bag.accept(expected);
+        bag.store(expected);
 
         expect(bag.slots[0].contents).toBe(expected);
     });
@@ -28,7 +28,7 @@ describe("filling bag", function() {
         var bag = makeBag(slots);
         var expected = 'new hotness';
 
-        bag.accept(expected);
+        bag.store(expected);
 
         expect(bag.slots[1].contents).toBe(expected);
         expect(bag.slots[2].contents).toBeUndefined();
@@ -48,7 +48,7 @@ describe("filling bag", function() {
         var bag = makeBag(slots);
         var expected = 'already overburdened';
 
-        bag.accept(expected);
+        bag.store(expected);
 
         expect(bag.slots[0].contents).not.toBe(expected);
         expect(bag.slots[1].contents).not.toBe(expected);
@@ -63,7 +63,7 @@ describe("filling bag", function() {
         }];
         var bag = makeBag(slots);
 
-        bag.accept({x:0, y:0});
+        bag.store({x:0, y:0});
 
         var actual = bag.slots[0].contents;
         expect(actual.x).toBe(expectedX);

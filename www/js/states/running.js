@@ -14,7 +14,7 @@ var state_running = function(game) {
 
             monsterFactory.lootCallback = function() {
                 var sprite = game.add.sprite(0, 0, monster.lootKey);
-                bag.accept(sprite);
+                bag.store(sprite);
             };
 
             var monster = monsterFactory.createMonster(game.world.width * layout.monsterXCoefficient, playerHeight);
