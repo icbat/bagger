@@ -9,7 +9,6 @@ var monsterFactory = {
         monster.lootKey = 'drop-heart';
 
         monster.die = function() {
-            monster.deathSignal.dispatch();
             var tween = game.add.tween(this).to({
                 alpha: 0,
                 rotation: 20
@@ -33,6 +32,7 @@ var monsterFactory = {
         });
 
         monster.events.onDestroy.add(function() {
+            this.lootCallback();
             this.createMonster(x, y);
         }, this);
         game.time.events.add(constants.monsterLifespan, monster.die, monster);
