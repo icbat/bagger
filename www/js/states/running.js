@@ -11,11 +11,12 @@ var state_running = function(game) {
             player.scale.setTo(4, 4);
             player.anchor.setTo(0.5, 1);
 
-            var monster = monsterFactory.createMonster(game.world.width * layout.monsterXCoefficient, playerHeight);
-
-            attackButton.onInputUp.add(function() {
-                monster.die();
+            monsterFactory.onCreate.add(function(newMonster) {
+                attackButton.onInputUp.add(function() {
+                    newMonster.die();
+                });
             });
+            monsterFactory.createMonster(game.world.width * layout.monsterXCoefficient, playerHeight);
         }
     };
 };
