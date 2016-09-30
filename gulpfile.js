@@ -14,6 +14,6 @@ gulp.task('copy-bower', function() {
 
 gulp.task('copy-graphics', function() {
     return gulp
-        .src(['assets/browser/favicon.png', 'assets/graphics/*', 'assets/graphics/monsters/*'])
+        .src(['assets/browser/favicon.png', 'assets/graphics/**/*'])
         .pipe(gulp.dest('./www/assets/graphics'));
 });
