@@ -13,8 +13,10 @@ var state_running = function(game) {
             player.anchor.setTo(0.5, 1);
 
             monsterFactory.lootCallback = function() {
-                var sprite = game.add.sprite(0, 0, monster.lootKey);
-                bag.store(sprite);
+                if (bag.hasOpenSlots()) {
+                    var sprite = game.add.sprite(0, 0, monster.lootKey);
+                    bag.store(sprite);
+                }
             };
 
             var monster = monsterFactory.createMonster(game.world.width * layout.monsterXCoefficient, playerHeight);
