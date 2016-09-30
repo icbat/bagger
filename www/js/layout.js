@@ -51,5 +51,20 @@ var layout = {
         var bottom = game.add.sprite(0, layout.fourthOfScreen(game) * 3, 'pixel');
         bottom.scale.setTo(game.world.width, layout.fourthOfScreen(game) + 100);
         bottom.tint = Phaser.Color.hexToRGB(colors.sand);
+    },
+    makeChargeBar: function(game) {
+        var xPadding = this.bagSlotPadding;
+        var yPadding = this.bagSlotPadding;
+        var width = game.world.width - xPadding * 2;
+        var height = this.bagSlotPadding * 2;
+        var backgroundFrame = game.add.sprite(xPadding, yPadding + (3 * this.fourthOfScreen(game)), 'pixel');
+        backgroundFrame.maxWidth = width;
+        backgroundFrame.minWidth = 5;
+        backgroundFrame.scale.setTo(backgroundFrame.minWidth, height);
+        backgroundFrame.tint = Phaser.Color.hexToRGB(colors.barBackground);
+        game.add.tween(backgroundFrame.scale).to({
+            x: width,
+            y: height
+        }, constants.attackChargeTime, Phaser.Easing.Linear.None, true);
     }
 };

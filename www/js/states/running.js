@@ -4,6 +4,7 @@ var state_running = function(game) {
             layout.makeSky(game);
             layout.makeGround(game);
             layout.makeBottomBox(game);
+            layout.makeChargeBar(game);
             var slots = layout.addBagSlots(game);
             var bag = makeBag(slots);
 
