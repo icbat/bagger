@@ -4,7 +4,8 @@ var state_running = function(game) {
             layout.makeSky(game);
             layout.makeGround(game);
             layout.makeBottomBox(game);
-            layout.addBagSlots(game);
+            var slots = layout.addBagSlots(game);
+            var bag = makeBag(slots);
 
             var playerHeight = layout.fourthOfScreen(game) - 64;
             var player = game.add.sprite(game.world.width * layout.playerXCoefficient, playerHeight, 'player');

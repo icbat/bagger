@@ -14,16 +14,23 @@ var layout = {
         return game.world.height / 4;
     },
     addBagSlots: function(game) {
+        var slots = [];
         for (i = 0; i < 9; ++i) {
             var slotSize = layout.findSlotSize(game.world.width, layout.fourthOfScreen(game) * 2, layout.bagSlotPadding);
             var xPadding = layout.findPadding(game.world.width, slotSize, layout.bagSlotPadding);
             var yPadding = layout.findPadding(layout.fourthOfScreen(game) * 2, slotSize, layout.bagSlotPadding);
             var x = xPadding + (i % 3) * (slotSize + layout.bagSlotPadding);
             var y = yPadding + (Math.floor(i / 3) * (slotSize + layout.bagSlotPadding));
-            var slot = game.add.sprite(x, layout.fourthOfScreen(game) + y, 'pixel');
+            y += layout.fourthOfScreen(game);
+            var slot = game.add.sprite(x, y, 'pixel');
+            slots.push({
+                x: x,
+                y: y
+            });
             slot.scale.setTo(slotSize, slotSize);
             slot.tint = Phaser.Color.hexToRGB(colors.bagSlots);
         }
+        return slots;
     },
     makeGround: function(game) {
         // SUPER inefficient, probably.
