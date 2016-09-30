@@ -29,8 +29,10 @@ var layout = {
         // SUPER inefficient, probably.
         // TODO Profile this vs one giant texture
         // TODO also try sprite batch
-        for (i = 0; i * 70 < game.world.width; ++i) {
-            game.add.sprite(i * 70, layout.fourthOfScreen(game) - 105, 'ground-middle');
+        var widthOfGroundSprite = 70;
+        var heightOfGroundSprite = 105;
+        for (i = 0; i * widthOfGroundSprite < game.world.width; ++i) {
+            game.add.sprite(i * widthOfGroundSprite, layout.fourthOfScreen(game) - heightOfGroundSprite, 'ground-middle');
         }
     },
     makeSky: function(game) {
